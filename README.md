@@ -4,7 +4,7 @@ DUP esoteric programming language
 
 [![Build Status](https://travis-ci.org/m-lohmann/DUPEsolang.jl.svg?branch=master)](https://travis-ci.org/m-lohmann/DUPEsolang.jl)
 
-For instructions about how to use the program, please [scroll down](https://github.com/m-lohmann/DUPEsolang.jl#Using-DUP).
+For instructions about how to use the program, please [scroll down](https://github.com/m-lohmann/DUPEsolang.jl#using-dup).
 
 ## Introduction
 
