@@ -31,7 +31,7 @@ Available program modes are:
 
   `"vars"` - variables information.
 """
-function dup(name::String,modus="silent")
+function dup(name::AbstractString,modus="silent")
     codestring=load(name)
     dups(codestring,modus)
 end
@@ -57,7 +57,7 @@ Available program modes are:
 
   `"vars"` - variables information.
 """
-function dups(codestring::String,modus="silent")
+function dups(codestring::AbstractString,modus="silent")
     s=initstate(codestring,modus)
     rundup(s,o)
 end
@@ -66,7 +66,7 @@ end
 `duptest("code_string")` loads the string `code_string` as DUP program and executes it.
     After execution the final program state is returned. Used for testing in runtests.jl.
 """
-function duptest(codestring::String)
+function duptest(codestring::AbstractString)
     dups(codestring,"silent")
     return s
 end
@@ -88,7 +88,7 @@ function initstate(codestring::AbstractString,modus)
 end
 
 # initial program state values
-function ini(state::State,codestring::String)
+function ini(state::State,codestring::AbstractString)
     state.ip    = 0                     #initialized
     state.vars  = Dict{Any,Int64}()
     state.ds    = sizehint!(Union{Char,Int64}[],2048)
