@@ -87,7 +87,7 @@ end
         "'0"                          =>  ['0']               ,   # '0' or 48
         "'a'b'c"                      =>  ['a','b','c']       ,
         "'a'b,'c'd,'e'f"              =>  ['a','c','e','f']   ,
-        "0\$\"abc\"")                 =>  [0,3]               ,
+        "0\$\"abc\""                  =>  [0,3]               ,
         "0\$\"str\"^\$;\\1+\$;\\1+;"  =>  [0,3,115,116,114]       # store string "str" in vars, fetch values.
     )
     for t in keys(tests)
@@ -97,7 +97,7 @@ end
 
 @testset "dup string handling variables storage test" begin
     tests=Dict(
-        "0\$\"abc\"")                 =>  Dict(0=>97, 1=>98, 2=>99) ,
+        "0\$\"abc\""                  =>  Dict(0=>97, 1=>98, 2=>99) ,
         "3\$\"str\"^\$;\\1+\$;\\1+;"  =>  Dict(3=>115, 4=>116, 5=>114)
     )
     for t in keys(tests)
