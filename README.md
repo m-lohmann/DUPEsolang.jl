@@ -413,13 +413,42 @@ Further examples, showing how some operators can be realized with the help of th
 
 Start with `using DUPEsolang` to load DUP into Julia. The first run might take a few seconds because DUP gets precompiled.
 
-#### Load and execute a dup program:
+### Load and execute a dup program:
 
 ```
 dup("program_name.dup")
 ```
 
-#### Run a DUP string directly:
+### Run a string representing a DUP program directly:
 
 ```
-dup("program_string",)
+dups("code_string")
+```
+
+If running `dups`, take care of escaping the characters `\"`, `\$` and `\\` properly inside the code string. Escape every instance of these caracters as follows: `\\\"`, `\\\$`, `\\\\`.
+
+#### Optional parameters
+
+The `dup` and `dups` commands also take an optional parameter for different program modes:
+
+`dup("program_name.dup","<parameter>")`
+
+Available parameters are:
+
+`"silent"`: The default mode to run a program. This parameter is automatically set if dup/dups are run without parameters.
+
+`"eachstep"`: Outputs a wealth of information about calculated parameters etc.
+
+`"fullstate"`: Outputs the program state (IP location, data stack, return stack, variables) for each program eval operation.
+
+`"ds"`: Outputs the data stack only.
+`"vars"`: Outputs the variables only.
+
+### Run DUP code string with final state Outputs
+
+```
+duptest("code_string")
+```
+
+Basically runs `dups(codestring,"silent")` and returns the program state after the program is finished.
+This mode is used for the `runtests.jl` script.
