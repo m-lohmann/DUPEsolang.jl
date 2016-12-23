@@ -425,7 +425,7 @@ dup("program_name.dup")
 dups("code_string")
 ```
 
-If running `dups`, take care of escaping the characters `\"`, `\$` and `\\` properly inside the code string. Escape every instance of these caracters as follows: `\\\"`, `\\\$`, `\\\\`.
+If running `dups`, take care of escaping the characters `"`, `$` and `\` properly inside the code string. Escape every instance of these caracters as follows: `\"`, `\$`, `\\`.
 
 #### Optional parameters
 
