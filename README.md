@@ -387,9 +387,9 @@ Minimum costs for definition and calling/referencing operators or functions:
 ### Return stack/continuation stack manipulation
 
 In **DUP**, the return stack is used for tracing brackets and locations of functions, like in **FALSE**. Unlike in **FALSE** however, the return stack in **DUP** is entirely transparent and can exchange values with the data stack. This way, return addresses can be deleted, changed, or the return stack can be used just as a second data stack.
-The `(` operator pops the tompost data stack value and pushes it on the return stack. The operator `(` pops the topmost return stack value and pushes it on the data stack.
+The `(` operator pops the topmost data stack value and pushes it on the return stack. The operator `(` pops the topmost return stack value and pushes it on the data stack.
 
-Example using the return stack as second stack fro temporary storage:
+Example using the return stack as second stack for temporary storage:
 ```
             data Stack          return stack
 2 3(4+)
@@ -400,7 +400,7 @@ Example using the return stack as second stack fro temporary storage:
       )     [6,3]               []
 ```
 
-Further examples, showing how some operators can be realized with the help of the return stack:
+Further examples showing how some operators can be realized with the help of the return stack:
 ```
 ($)\                    alternative realization of the OVER operator ^
 (\)\                    alternative realization of the ROT operator @
