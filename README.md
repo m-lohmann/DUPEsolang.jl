@@ -153,7 +153,7 @@ Examples
 3 3<        [0]     (FALSE)
 ```
 
-### Variable and numeric address assignemnt, fetch values
+### Variable and numeric address assignment, fetch values
 
 **DUP** allows to assign values to variables or numeric addresses. All alphabetic ASCII lowercase characters can be used as variable names. Furthermore, values can also assigned to all positive integer numbers including zero. Assigning values to numeric addresses is also used in string storage (see below).
 
