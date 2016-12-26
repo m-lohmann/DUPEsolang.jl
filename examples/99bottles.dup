@@ -1,0 +1,26 @@
+{This DUP solution makes extensive use of the operator definition}
+{operator '⇒' to define new operators for text snippets used in the song.}
+{Some of the newly defined operators use names beyond the ASCII range}
+
+{String and character operator definitions}
+
+[0$]⇒Z                        {Set cell start address to store string}
+                                    {initialization for string output}
+[\[^^>][$;,1+]#%%]⇒π                        {String output operator}
+['N,]⇒N                                     {character 'N'}
+['n,]⇒ℕ                                    {character 'n'}
+[Z"o more"π]⇒O                              {string 'o more'}
+[Z" bottle"π]⇒β                             {string ' bottle'}
+['s,]⇒S                                     {character 's'}
+[Z" of beer"π]⇒B                            {string ' of beer'}
+[Z" on the wall"π]⇒W                        {string ' on the wall'}
+['.,]⇒P                                     {character '.'}
+[',,' ,]⇒C                                  {string ', '}
+[Z"Take one down and pass it around"πC]⇒T   {string 'Take....' + string ', '}
+[Z"Go to the store and buy some more"πC]⇒G  {string 'Go to...' + string ', '}
+[10,]⇒ν                                     {newline}
+
+{The Program itself}
+
+99[$0>][$$.β1>[S][]?BWC $$.β1>[S][]?BPνT1-$$0>[.β$1>[S][]?][ℕOβS]?BPνν]#
+$0=[NOβSBWCℕOβSBPνG99.βSBWPν][]?

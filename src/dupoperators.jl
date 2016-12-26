@@ -36,5 +36,7 @@ o=Dict(
     '.' =>  :(print("$(pop!(s.ds))")),
     'ß' =>  :(nothing),
     # define new operators or override existing ones:
-    '⇒' =>  :(op=pop!(s.ds);s.ip+=1;o[s.code[s.ip+1]]= :(push!(s.rs,s.ip);s.ip=op))
+    '⇒' =>  :(op=pop!(s.ds);s.ip+=1;o[s.code[s.ip+1]]= :(push!(s.rs,s.ip);s.ip=$op)),
+    # nonstandard debug operator, can be overridden
+    '§' =>  :(debugprint())
 )

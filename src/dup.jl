@@ -14,6 +14,7 @@ end
 
 """
 `dup("program_name")` loads the program `program_name` and executes it.
+Equivalent to `dup("program_name",0,"slient")`.
 
 Optional use:
 
@@ -30,11 +31,31 @@ Available program modes are:
   `"ds"` - data stack information.
 
   `"vars"` - variables information.
+
+Setting step limit:
+
+ `dup("program_name",lim::Int,"program_mode")` runs the program for `lim` steps in the mode `program_mode`.
+
+ `dup("program_name",lim::Int)` runs the program for `lim` steps in `silent` mode.
+
 """
-function dup(name::AbstractString,modus="silent")
-    codestring=load(name)
-    dups(codestring,modus)
+function dup(name::AbstractString)
+    dup(name,0,"silent")
 end
+
+function dup(name::AbstractString,modus="silent")
+    dup(name,0,modus)
+end
+
+function dup(name::AbstractString,lim=0)
+    dup(name,lim,"silent")
+end
+
+function dup(name::AbstractString,lim=0,modus="silent")
+    codestring=load(name)
+    dups(codestring,0,modus)
+end
+
 
 """
 `dups("code_string")` loads the string `code_string` as DUP program and executes it.
@@ -56,18 +77,37 @@ Available program modes are:
   `"ds"` - data stack information.
 
   `"vars"` - variables information.
+
+Setting step limit:
+
+`dups("program_name",lim::Int,"program_mode")` runs the code string for `lim` steps in the mode `program_mode`.
+
 """
+
+function dups(codestring::AbstractString)
+    dups(codestring,0,"silent")
+end
+
+function dups(codestring::AbstractString,lim::Int)
+    dups(codestring,lim,"silent")
+end
+
 function dups(codestring::AbstractString,modus="silent")
-    s=initstate(codestring,modus)
+    dups(codestring,0,modus)
+end
+
+function dups(codestring::AbstractString,lim=0,modus="silent")
+    s=initstate(codestring,lim,modus)
     rundup(s,o)
 end
+
 
 """
 `duptest("code_string")` loads the string `code_string` as DUP program and executes it.
     After execution the final program state is returned. Used for testing in runtests.jl.
 """
 function duptest(codestring::AbstractString)
-    dups(codestring,"silent")
+    dups(codestring,0,"silent")
     return s
 end
 
@@ -80,9 +120,10 @@ end
 
 
 #   initialize program state
-function initstate(codestring::AbstractString,modus)
+function initstate(codestring::AbstractString,lim::Int,modus::AbstractString)
     global s = State()
     global mode = modus
+    global limit = lim
     ini(s,codestring)
     return s
 end
@@ -113,20 +154,49 @@ function rundup(s,o)
         mode=="vars"      ? (return s.vars):
         mode=="silent"    ? nothing : nothing
         counter+=1
-        counter>1e4 ? break : nothing
+        limit !=0 && counter > limit ? break :
+        limit ==0 ? nothing : nothing
     end
 end
 
+#print state info
 function stateprint(counter)
-    println("--- $counter ---")
-    println("ip: $(s.ip), code: $(s.code[s.ip+1])")
-    println("ds: $(s.ds)")
-    println("rs: $(s.rs)")
-    println("vars:")
-    for (j,k) in s.vars
-        println("$j → $k")
+    if s.ip<=length(s.code)-1
+        print_with_color(:blue,"\n---- state ----")
+        print_with_color(:blue,"\n -- $counter --\n")
+        for i=1:length(s.code)
+            i==s.ip+1 ? print_with_color(:blue,string(s.code[i])) : print(s.code[i])
+        end
+        println()
+        println("ip: $(s.ip)")
+        println("ds: $(s.ds)")
+        println("rs: $(s.rs)")
+        println("vars:")
+        for (j,k) in s.vars
+            println("$j → $k")
+        end
     end
 end
+
+
+# print debug info
+function debugprint()
+    if s.ip<=length(s.code)-1
+        print_with_color(:blue,"\n--- debug info ---\n")
+        for i=1:length(s.code)
+            i==s.ip+1 ? print_with_color(:blue,string(s.code[i])) : print(s.code[i])
+        end
+        println()
+        println("ip: $(s.ip)")
+        println("ds: $(s.ds)")
+        println("rs: $(s.rs)")
+        println("vars:")
+        for (j,k) in s.vars
+            println("$j → $k")
+        end
+    end
+end
+
 
 function evalcode(s,o)
     c=s.code[s.ip+1]

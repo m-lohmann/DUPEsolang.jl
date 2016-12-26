@@ -20,6 +20,14 @@ function getstring(s)
     end
     s.ip+=1
     push!(s.ds,s.ip-start)
+    if mode=="eachstep"||mode=="fullstate"
+        a=sort(collect(s.vars))
+        println("vars:")
+        for n=1:length(a)
+            println("$(a[n][1]) → $(a[n][2])")
+        end
+        println("string length: $(s.ds[end])")
+    end
 end
 
 # ` input character

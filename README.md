@@ -6,6 +6,32 @@ DUP esoteric programming language
 
 For instructions about how to use the program, please [scroll down](https://github.com/m-lohmann/DUPEsolang.jl#using-dup).
 
+Content:
+
+* [Introduction](https://github.com/m-lohmann/DUPEsolang.jl#introduction)
+* [Instructions](https://github.com/m-lohmann/DUPEsolang.jl#instructions)
+ * [Numbers](https://github.com/m-lohmann/DUPEsolang.jl#numbers)
+ * [Stack manipulation](https://github.com/m-lohmann/DUPEsolang.jl#stack-manipulation)
+ * [Arithmetic operators](https://github.com/m-lohmann/DUPEsolang.jl#arithmetic-operators)
+ * [Logic operators and bit manipulation](https://github.com/m-lohmann/DUPEsolang.jl#logic-operators-and-bit-manipulation)
+ * [Comparison operators](https://github.com/m-lohmann/DUPEsolang.jl#comparison-operators)
+ * [Variable and numeric address assignment](https://github.com/m-lohmann/DUPEsolang.jl#variable-and-numeric-address-assignment-fetch-values)
+  * [Assign values](https://github.com/m-lohmann/DUPEsolang.jl#assign-values-to-variables-and-numeric-addresses)
+  * [Fetch values](https://github.com/m-lohmann/DUPEsolang.jl#fetch-value-from-variables-and-addresses)
+ * [Single character handling](https://github.com/m-lohmann/DUPEsolang.jl#single-character-handling)
+ * [String handling](https://github.com/m-lohmann/DUPEsolang.jl#string-handling)
+ * [Comments](https://github.com/m-lohmann/DUPEsolang.jl#comments)
+ * [Conditionals/Program flow](https://github.com/m-lohmann/DUPEsolang.jl#conditionalsprogram-flow-control)
+   * [If Then Else](https://github.com/m-lohmann/DUPEsolang.jl#if-then-else)
+   * [While Loop](https://github.com/m-lohmann/DUPEsolang.jl#while-loop)
+ * [Lambdas, named functions, operators](https://github.com/m-lohmann/DUPEsolang.jl#lambdas-named-functions-named-operators)
+   * [Lambdas](https://github.com/m-lohmann/DUPEsolang.jl#lambdas)
+   * [Named functions](https://github.com/m-lohmann/DUPEsolang.jl#named-functions)
+   * [Named operators](https://github.com/m-lohmann/DUPEsolang.jl#named-operators)
+ * [Return stack/continuation stack manipulation](https://github.com/m-lohmann/DUPEsolang.jl#return-stackcontinuation-stack-manipulation)
+* [Using DUP](https://github.com/m-lohmann/DUPEsolang.jl#using-dup)
+* [Debugging operator](https://github.com/m-lohmann/DUPEsolang.jl#debugging-operator)
+
 ## Introduction
 
 **DUP** is a variant of Wouter van Oortmerssen’s **FALSE** language developed by Ian Osgood. Like **FALSE**, **DUP** is a Forth-like language, and analogous to Oortmerssen’s **FALSE** language, Osgood named **DUP** after his own favorite Forth stack operator.
@@ -185,7 +211,7 @@ Originally, in **FALSE**, the character `^` is used for character input.
 ### String handling
 
 In **DUP**, strings are not sent to STDOUT directly. Strings are stored in the variable array, using the following syntax: `<start_address>"<string>"`. This stores a string character by caharcter in the variable array, starting at the specified address, assigning the next character to the next address and so on. Finally, the length of the stored string is pushed on the data stack.
-In my Julia implementation, assigning strings to an alphabetic start variable, follows the same principle, counting up in alphabetical order. This behavior is different from the [Javascript implementation](http://www.quirkster.com/iano/js/dup.html) at quirkster.com.
+In my Julia implementation, assigning strings to an alphabetic start variable, follows the same principle, counting up in alphabetical order. This behavior is different from the [Javascript implementation](http://www.quirkster.com/iano/js/dup.html) at quirkster.com. *For compatibility reasons, you should not assign strings to alphabetic variables!*
 
 Examples:
 ```
@@ -444,6 +470,21 @@ Available parameters are:
 `"ds"`: Outputs the data stack only.
 `"vars"`: Outputs the variables only.
 
+One further optional parameter is the limit of steps the program should run:
+
+`dup("program_name.dup",limit,<parameter>)`
+
+This option defaults to no limit (`0`).
+
+Both `dup` and `dups` can be run with or without the limit or mode parameter. All of the following alternatives are valid:
+
+```
+dup("program.dup")
+dup("program.dup",10000)
+dup("program.dup","fullstate")
+dup("program.dup",555,"ds")
+```
+
 ### Run DUP code string with final state Outputs
 
 ```
@@ -452,3 +493,7 @@ duptest("code_string")
 
 Basically runs `dups(codestring,"silent")` and returns the program state after the program is finished.
 This mode is used for the `runtests.jl` script.
+
+### Debugging operator
+
+I implemented the `§` character as debug information output operator. This character can be put anywhere in a program to get a formatted and detailed view of the program state at that location. Because `§` is implemented as operator, it can be redefined at any time, if the users wishes to do so.
