@@ -39,7 +39,7 @@ Content:
 
 ## Instructions
 
-In the following explanations about syntax `<name>` or <address> mean the value or descriptor of a variable name or address value. Other descriptors are used in a similar fashion.
+In the following explanations about syntax `<name>` or `<address>` mean the value or descriptor of a variable name or address value. Other descriptors are used in a similar fashion.
 
 ### Numbers
 
