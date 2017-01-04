@@ -60,12 +60,12 @@ Numbers         data stack
 The data stack in **DUP** can be manipulated with the following instructions:
 
 ```
-$   DUP     Duplicate top stack item.
+$   DUP     Dup top stack item.
 %   DROP    Pop top stack item.
-^   OVER    DUP 2nd stack item . **New meaning in DUP, read character in FALSE**
+^   OVER    Dup 2nd stack item . **New meaning in DUP, read character in FALSE**
 \   SWAP    Swap 1st and 2nd stack items.
 @   ROT     Rotate the first three stack items: move 3rd item on top.
-ø   PICK    DUP the nth stack item. Top item is counted as the 0th item.
+ø   PICK    Dup the nth stack item. Top item is counted as the 0th item.
 ```
 
 Examples:
@@ -209,7 +209,7 @@ Input of single characters is done with the backtick character `` ` ``. The char
 
 ```
                 data stack
-`               ['H']/[72]                (when 'H' was entered in STDIN)
+`               ['H']/[72]     (if 'H' was entered in STDIN)
 ```
 Originally, in **FALSE**, the character `^` is used for character input.
 
