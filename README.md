@@ -20,7 +20,7 @@ Content:
     * [Fetch values](https://github.com/m-lohmann/DUPEsolang.jl#fetch-value-from-variables-and-addresses)
  * [I/O](https://github.com/m-lohmann/DUPEsolang.jl#io)
     * [Single character handling/output](https://github.com/m-lohmann/DUPEsolang.jl#single-character-handlingoutput)
-    * [Character input](https://github.com/m-lohmann/DUPEsolang.jl#character-input))
+    * [Character input](https://github.com/m-lohmann/DUPEsolang.jl#character-input)
     * [String handling/output](https://github.com/m-lohmann/DUPEsolang.jl#string-handlingoutput)
  * [Comments](https://github.com/m-lohmann/DUPEsolang.jl#comments)
  * [Conditionals/Program flow](https://github.com/m-lohmann/DUPEsolang.jl#conditionalsprogram-flow-control)
