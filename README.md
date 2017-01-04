@@ -18,8 +18,10 @@ Content:
  * [Variable and numeric address assignment](https://github.com/m-lohmann/DUPEsolang.jl#variable-and-numeric-address-assignment-fetch-values)
     * [Assign values](https://github.com/m-lohmann/DUPEsolang.jl#assign-values-to-variables-and-numeric-addresses)
     * [Fetch values](https://github.com/m-lohmann/DUPEsolang.jl#fetch-value-from-variables-and-addresses)
- * [Single character handling](https://github.com/m-lohmann/DUPEsolang.jl#single-character-handling)
- * [String handling](https://github.com/m-lohmann/DUPEsolang.jl#string-handling)
+ * [I/O](https://github.com/m-lohmann/DUPEsolang.jl#io)
+    * [Single character handling/output](https://github.com/m-lohmann/DUPEsolang.jl#single-character-handlingoutput)
+    * [Character input](https://github.com/m-lohmann/DUPEsolang.jl#character-input))
+    * [String handling/output](https://github.com/m-lohmann/DUPEsolang.jl#string-handlingoutput)
  * [Comments](https://github.com/m-lohmann/DUPEsolang.jl#comments)
  * [Conditionals/Program flow](https://github.com/m-lohmann/DUPEsolang.jl#conditionalsprogram-flow-control)
     * [If Then Else](https://github.com/m-lohmann/DUPEsolang.jl#if-then-else)
@@ -190,8 +192,9 @@ Examples:
 3a: 2z: z;                  a=3, z=2            [2]
 3 70: 7 z: 1 0: z; 0; 70;   0=1, 70=3, z=7      [7,1,3]
 ```
+### I/O
 
-### Single character handling
+#### Single character handling/output
 
 Single charaters/their Unicode values can be pushed on the data stack by using a preceding single quote `'<character>`:
 
@@ -199,7 +202,10 @@ Single charaters/their Unicode values can be pushed on the data stack by using a
                 Resulting data stack
 'H'e'l'l'o      ['H','e','l','l','o'] / [72, 101, 108, 108, 111]
 ```
-Input of single characters is done with the backtick character ` ` `. The character is then pushed on the data stack:
+
+#### Character input
+
+Input of single characters is done with the backtick character `` ` ``. The character is then pushed on the data stack:
 
 ```
                 data stack
@@ -208,7 +214,7 @@ Input of single characters is done with the backtick character ` ` `. The charac
 Originally, in **FALSE**, the character `^` is used for character input.
 
 
-### String handling
+#### String handling/output
 
 In **DUP**, strings are not sent to STDOUT directly. Strings are stored in the variable array, using the following syntax: `<start_address>"<string>"`. This stores a string character by caharcter in the variable array, starting at the specified address, assigning the next character to the next address and so on. Finally, the length of the stored string is pushed on the data stack.
 In my Julia implementation, assigning strings to an alphabetic start variable, follows the same principle, counting up in alphabetical order. This behavior is different from the [Javascript implementation](http://www.quirkster.com/iano/js/dup.html) at quirkster.com. *For compatibility reasons, you should not assign strings to alphabetic variables!*
