@@ -67,7 +67,8 @@ using Base.Test
         "[\$*]⇒²9²"                   =>  [81]               ,   # define new square operator, apply 9²=81
         "[/\\%]⇒÷ 6 3÷"               =>  [2]                ,   # define new divide only operator; apply 6÷3=2
         "[^~&|]⇒V 0 0V 0 1_V 1_0V1_1_V"=> [0,-1,-1,-1]       ,   # define new OR operator; test all combinations
-        "[2*]⇒B[1+B]⇒A 1A"           =>  [4]                    # nested operator definitions
+        "[2*]⇒B[1+B]⇒A 1A"            =>  [4]                ,   # nested operator definitions
+        "[1ø]⇒^ 2 1^"                 =>  [2 1 2]                # substitute existing OVER with (equivalent) 1ø
     )
     for t in keys(tests)
         @test duptest(t).ds==tests[t]
