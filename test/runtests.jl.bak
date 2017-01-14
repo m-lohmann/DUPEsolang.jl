@@ -241,7 +241,7 @@ elseif VERSION < v"0.5"
         "[\$*]⇒²9²"                   =>  [81]               ,   # define new square operator, apply 9²=81
         "[/\\%]⇒÷ 6 3÷"               =>  [2]                ,   # define new divide only operator; apply 6÷3=2
         "[^~&|]⇒V 0 0V 0 1_V 1_0V1_1_V"=> [0,-1,-1,-1]       ,   # define new OR operator; test all combinations
-        "[1ø]⇒^ 2 1^"                 =>  [2 1 2]                # override existing OVER with (equivalent) 1ø
+        "[1ø]⇒^ 2 1^"                 =>  [2,1,2]                # override existing OVER with (equivalent) 1ø
     )
     for t in keys(tests)
         @test duptest(t).ds==tests[t]
@@ -252,7 +252,7 @@ elseif VERSION < v"0.5"
     tests2=Dict(
     # string handling vars check
         "0\$\"abc\""                  =>  Dict(0=>97, 1=>98, 2=>99) ,
-        "3\$\"str\"^\$;\\1+\$;\\1+;"  =>  Dict(3=>115, 4=>116, 5=>114)
+        "[1ø]⇒^3\$\"str\"^\$;\\1+\$;\\1+;"  =>  Dict(3=>115, 4=>116, 5=>114)
     )
     for t in keys(tests2)
         @test duptest(t).vars==tests2[t]

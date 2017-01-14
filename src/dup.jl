@@ -43,17 +43,17 @@ function dup(name::AbstractString)
     dup(name,0,"silent")
 end
 
-function dup(name::AbstractString,modus="silent")
+function dup(name::AbstractString,modus::AbstractString)
     dup(name,0,modus)
 end
 
-function dup(name::AbstractString,lim=0)
+function dup(name::AbstractString,lim::Int)
     dup(name,lim,"silent")
 end
 
-function dup(name::AbstractString,lim=0,modus="silent")
+function dup(name::AbstractString,lim::Int,modus::AbstractString)
     codestring=load(name)
-    dups(codestring,0,modus)
+    dups(codestring,lim,modus)
 end
 
 
@@ -92,11 +92,11 @@ function dups(codestring::AbstractString,lim::Int)
     dups(codestring,lim,"silent")
 end
 
-function dups(codestring::AbstractString,modus="silent")
+function dups(codestring::AbstractString,modus::AbstractString)
     dups(codestring,0,modus)
 end
 
-function dups(codestring::AbstractString,lim=0,modus="silent")
+function dups(codestring::AbstractString,lim::Int,modus::AbstractString)
     s=initstate(codestring,lim,modus)
     rundup(s,o)
 end

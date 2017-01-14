@@ -33,7 +33,7 @@ o=Dict(
     '#' =>  :(whiletrue(s)),
     '`' =>  :(push!(s.ds,getchar())),
     ',' =>  :(print(Char(pop!(s.ds)))),
-    '.' =>  :(print("$(pop!(s.ds))")),
+    '.' =>  :(print("$(Int64(pop!(s.ds)))")),
     'ß' =>  :(nothing),
     # define new operators or override existing ones:
     '⇒' =>  :(op=pop!(s.ds);s.ip+=1;o[s.code[s.ip+1]]= :(push!(s.rs,s.ip);s.ip=$op)),
