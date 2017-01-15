@@ -22,7 +22,7 @@ o=Dict(
     '>' =>  :(pop!(s.ds)< pop!(s.ds)?push!(s.ds,-1):push!(s.ds,0)),
     ':' =>  :(varpush(s)),
     ';' =>  :(push!(s.ds,s.vars[pop!(s.ds)])),
-    '\''=>  :(push!(s.ds,s.code[s.ip+2]);s.ip+=1),
+    '\''=>  :(push!(s.ds,Int64(s.code[s.ip+2]));s.ip+=1),
     '\"'=>  :(getstring(s)),
     '{' =>  :(s.ip=s.ah[s.ip+1]),
     '}' =>  :(error("Unmatched '}' at address $(s.ip).")),

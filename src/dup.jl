@@ -2,8 +2,8 @@ type State
     ip::Int64
     ah::Array{Int64}
     vars::Dict{Any,Int64}
-    ds::Array{Union{Char,Int64},1}      #data stack, able to hold Chars and Ints
-    rs::Array{Union{Char,Int64},1}      #return stack, able to hold Chars and Ints
+    ds::Array{Int64}      #data stack, able to hold Chars and Ints
+    rs::Array{Int64}      #return stack, able to hold Chars and Ints
     code::Array{Char}
 
     function State()
@@ -98,7 +98,7 @@ end
 
 function dups(codestring::AbstractString,lim::Int,modus::AbstractString)
     s=initstate(codestring,lim,modus)
-    rundup(s,o)
+    rundup(s)
 end
 
 
@@ -132,21 +132,21 @@ end
 function ini(state::State,codestring::AbstractString)
     state.ip    = 0                     #initialized
     state.vars  = Dict{Any,Int64}()
-    state.ds    = sizehint!(Union{Char,Int64}[],2048)
-    state.rs    = sizehint!(Union{Char,Int64}[],2048)
+    state.ds    = sizehint!(Int64[],2048)
+    state.rs    = sizehint!(Int64[],2048)
     state.code  = collect(codestring)
     state.ah    = ahead(state.code)
 end
 
 #run loop
-function rundup(s,o)
+function rundup(s)
     if s.ip >= length(s.code)
         #error("end of program")
         return
     end
     counter=1
     @inbounds while s.ip<length(s.code)
-        evalcode(s,o)
+        evalcode(s)
         #mode=="laststate" ? (return s) :
         mode=="eachstep"  ? println("--- $counter ---") :
         mode=="fullstate" ? stateprint(counter) :
@@ -178,32 +178,16 @@ function stateprint(counter)
     end
 end
 
+function evalcode(s)
+    standardops=['$','%','ø','^','\\','@','(',')','+','-','*','/','_','«','»','&','|','~',
+                 '>','<','=',':',';','\'','\"','{','}','[',']','!','?','#','`',',','.','ß',
+                 '⇒','§']
 
-# print debug info
-function debugprint()
-    if s.ip<=length(s.code)-1
-        print_with_color(:blue,"\n--- debug info ---\n")
-        for i=1:length(s.code)
-            i==s.ip+1 ? print_with_color(:blue,string(s.code[i])) : print(s.code[i])
-        end
-        println()
-        println("ip: $(s.ip)")
-        println("ds: $(s.ds)")
-        println("rs: $(s.rs)")
-        println("vars:")
-        for (j,k) in s.vars
-            println("$j → $k")
-        end
-    end
-end
-
-
-function evalcode(s,o)
     c=s.code[s.ip+1]
     mode=="eachstep"||mode=="fullstate" ? println("ev, c: $c") : nothing
-    if haskey(o,c)                  # check Dict with instructions
-        mode=="eachstep"||mode=="fullstate" ? println("ev key: $(c) => $(o[c])") : nothing
-        eval(@eval o[rcode(s)])
+    if c in standardops                  # check Dict with instructions
+        #mode=="eachstep"||mode=="fullstate" ? println("ev key: $(c) => $(o[c])") : nothing
+        operator(rcode(s),s)
     elseif isdigit(c)                       # parse number string
         num=0
         while isdigit(s.code[s.ip+1])
