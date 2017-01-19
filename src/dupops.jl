@@ -35,7 +35,7 @@ function operator(oc::Char,s)
     oc==',' ? (outputchar(s) ):
     oc=='.' ? (outputint(s) ):
     oc=='ß' ? (flush() ):
-    oc=='⇒' ? (opassign(s) ):
+    oc=='⇒' ? (opassign(s,newops) ):
     oc=='§' ? (debugprint() ):
     nothing
 end
@@ -197,9 +197,20 @@ outputint(s) = print("$(Int64(pop!(s.ds)))")
 
 flush() = nothing
 
-function opassign(s)
-    push!(s.rs,s.ip)
-    s.ip=pop!(s.ds)
+function opassign(s,newops)
+    oploc=pop!(s.ds)
+    s.ip+=1
+    if isempty(s.no)
+        s.no=[s.code[s.ip+1] oploc]
+        newops=[s.code[s.ip+1]]
+    else
+        if isempty(findin(s.no,s.code[s.ip+1])) #if op does not exist yet in no
+            s.no=vcat(s.no,[s.code[s.ip+1] oploc])
+            push!(newops,s.code[s.ip+1])
+        else                                    #if op exists in no...
+            s.no[findin(s.no,s.code[s.ip+1]),2]=oploc   #...overwrite op location
+        end
+    end
 end
 
 # print debug info, non-standard operator
@@ -216,6 +227,10 @@ function debugprint()
         println("vars:")
         for (j,k) in s.vars
             println("$j → $k")
+        end
+        println("new ops:")
+        for i=1:length(s.no[:,1])
+            println("$(s.no[i,1]) → $(s.no[i,2])")
         end
     end
 end
