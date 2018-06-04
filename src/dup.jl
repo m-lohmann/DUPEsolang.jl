@@ -208,7 +208,7 @@ function evalcode(s)
         end
         push!(s.ds,num)
         mode=="eachstep"||mode=="fullstate" ? println("ev, ip++: $(s.ip)") : nothing
-        mode=="eachstep"||mode=="fullstate" ? println("ds: $(s.ds)"): nothing
+        mode=="eachstep"||mode=="fullstate" ? println("ds: $(s.ds)") : nothing
         return
     elseif ismatch(r"\s",string(c))     # parse whitespace
         while ismatch(r"\s",string(s.code[s.ip+1])) && s.ip<length(s.code)
@@ -218,14 +218,14 @@ function evalcode(s)
             end
         end
         mode=="eachstep"||mode=="fullstate" ? println("ev, ip++: $(s.ip)") : nothing
-        mode=="eachstep"||mode=="fullstate" ? println("ds: $(s.ds)"): nothing
+        mode=="eachstep"||mode=="fullstate" ? println("ds: $(s.ds)") : nothing
         return
     else                                # if c is anything else
         push!(s.ds,c)                   # i.e. ascii and unicode charaters
     end                                 # for variable and operator definition
     s.ip+=1
     mode=="eachstep"||mode=="fullstate" ? println("ev, ip++: $(s.ip)") : nothing
-    mode=="eachstep"||mode=="fullstate" ? println("ds: $(s.ds)"): nothing
+    mode=="eachstep"||mode=="fullstate" ? println("ds: $(s.ds)") : nothing
 end
 
 function rcode(s::State)
