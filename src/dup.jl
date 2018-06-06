@@ -1,4 +1,4 @@
-type State
+mutable struct State
     ip::Int64               #instruction pointer
     ah::Array{Int64}        #point ahead array for brackets
     vars::Dict{Any,Int64}   #variable Dict
@@ -83,7 +83,6 @@ Setting step limit:
 `dups("program_name",lim::Int,"program_mode")` runs the code string for `lim` steps in the mode `program_mode`.
 
 """
-
 function dups(codestring::AbstractString)
     dups(codestring,0,"silent")
 end
@@ -152,11 +151,10 @@ function rundup(s)
     counter=1
     @inbounds while s.ip<length(s.code)
         evalcode(s)
-        #mode=="laststate" ? (return s) :
         mode=="eachstep"  ? println("--- $counter ---") :
         mode=="fullstate" ? stateprint(counter) :
-        mode=="ds"        ? (return s.ds):
-        mode=="vars"      ? (return s.vars):
+        mode=="ds"        ? (return s.ds) :
+        mode=="vars"      ? (return s.vars) :
         mode=="silent"    ? nothing : nothing
         counter+=1
         limit !=0 && counter > limit ? break :
@@ -200,7 +198,7 @@ function evalcode(s)
     elseif isdigit(c)                       # parse number string
         num=0
         while isdigit(s.code[s.ip+1])
-            num=10*num+parse(Int64,s.code[s.ip+1],10)
+            num=10*num+parse(Int64,s.code[s.ip+1],base=10)
             if s.ip+1 == length(s.code)
                 s.ip+=1;break
             else s.ip+=1
@@ -210,8 +208,8 @@ function evalcode(s)
         mode=="eachstep"||mode=="fullstate" ? println("ev, ip++: $(s.ip)") : nothing
         mode=="eachstep"||mode=="fullstate" ? println("ds: $(s.ds)") : nothing
         return
-    elseif ismatch(r"\s",string(c))     # parse whitespace
-        while ismatch(r"\s",string(s.code[s.ip+1])) && s.ip<length(s.code)
+    elseif occursin(r"\s",string(c))     # parse whitespace
+        while occursin(r"\s",string(s.code[s.ip+1])) && s.ip<length(s.code)
             s.ip+=1
             if s.ip==length(s.code)
                 break

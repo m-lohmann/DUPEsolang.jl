@@ -1,42 +1,42 @@
 function operator(oc::Char,s)
-    oc=='$' ? (dup(s) ):
-    oc=='%' ? (del(s) ):
-    oc=='ø' ? (pick(s) ):
-    oc=='^' ? (over(s) ):
-    oc=='\\'? (swap(s) ):
-    oc=='@' ? (rot(s) ):
-    oc=='(' ? (tors(s) ):
-    oc==')' ? (tods(s) ):
-    oc=='+' ? (add(s) ):
-    oc=='-' ? (sub(s) ):
-    oc=='*' ? (mul(s) ):
-    oc=='/' ? (moddiv(s) ):
-    oc=='_' ? (negate(s) ):
-    oc=='«' ? (asl(s) ):
-    oc=='»' ? (lsr(s) ):
-    oc=='&' ? (and(s) ):
-    oc=='|' ? (xor(s) ):
-    oc=='~' ? (not(s) ):
-    oc=='>' ? (greaterthan(s) ):
-    oc=='<' ? (lessthan(s) ):
-    oc=='=' ? (equals(s) ):
-    oc==':' ? (varpush(s) ):
-    oc==';' ? (varassign(s)):
-    oc=='\''? (charpush(s) ):
-    oc=='\"'? (getstring(s) ):
-    oc=='{' ? (opencurl(s) ):
-    oc=='}' ? (closecurl(s) ):
-    oc=='[' ? (openbracket(s) ):
-    oc==']' ? (closebracket(s) ):
-    oc=='!' ? (execute(s) ):
-    oc=='?' ? (ifthenelse(s) ):
-    oc=='#' ? (whiletrue(s) ):
-    oc=='`' ? (inputchar(s) ):
-    oc==',' ? (outputchar(s) ):
-    oc=='.' ? (outputint(s) ):
-    oc=='ß' ? (flush() ):
-    oc=='⇒' ? (opassign(s,newops) ):
-    oc=='§' ? (debugprint() ):
+    oc=='$' ? (dup(s)) :
+    oc=='%' ? (del(s)) :
+    oc=='ø' ? (pick(s)) :
+    oc=='^' ? (over(s)) :
+    oc=='\\'? (swap(s)) :
+    oc=='@' ? (rot(s)) :
+    oc=='(' ? (tors(s)) :
+    oc==')' ? (tods(s)) :
+    oc=='+' ? (add(s)) :
+    oc=='-' ? (sub(s)) :
+    oc=='*' ? (mul(s)) :
+    oc=='/' ? (moddiv(s)) :
+    oc=='_' ? (negate(s)) :
+    oc=='«' ? (asl(s)) :
+    oc=='»' ? (lsr(s)) :
+    oc=='&' ? (and(s)) :
+    oc=='|' ? (xor(s)) :
+    oc=='~' ? (not(s)) :
+    oc=='>' ? (greaterthan(s)) :
+    oc=='<' ? (lessthan(s)) :
+    oc=='=' ? (equals(s)) :
+    oc==':' ? (varpush(s)) :
+    oc==';' ? (varassign(s)) :
+    oc=='\''? (charpush(s)) :
+    oc=='\"'? (getstring(s)) :
+    oc=='{' ? (opencurl(s)) :
+    oc=='}' ? (closecurl(s)) :
+    oc=='[' ? (openbracket(s)) :
+    oc==']' ? (closebracket(s)) :
+    oc=='!' ? (execute(s)) :
+    oc=='?' ? (ifthenelse(s)) :
+    oc=='#' ? (whiletrue(s)) :
+    oc=='`' ? (inputchar(s)) :
+    oc==',' ? (outputchar(s)) :
+    oc=='.' ? (outputint(s)) :
+    oc=='ß' ? (flush()) :
+    oc=='⇒' ? (opassign(s,newops)) :
+    oc=='§' ? (debugprint()) :
     nothing
 end
 

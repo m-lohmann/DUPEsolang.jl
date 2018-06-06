@@ -2,7 +2,7 @@
 
 #Start Test Script
 using DUPEsolang
-using Base.Test
+using Test
 
     tests=[
         ("9"                           ,  [9]               )  ,   # [9]  # number recognition tests
@@ -63,7 +63,8 @@ using Base.Test
 
     tests2=[
         ("0\$\"abc\""                 ,  Dict(0=>97, 1=>98, 2=>99)) ,        # string handling vars check
-        ("[1ø]⇒^3\$\"str\"^\$;\\1+\$;\\1+;" ,  Dict(3=>115, 4=>116, 5=>114)) ]
+        ("[1ø]⇒^3\$\"str\"^\$;\\1+\$;\\1+;" ,  Dict(3=>115, 4=>116, 5=>114))
+    ]
     for t in tests2
         @test duptest(t[1]).vars==t[2]
     end
