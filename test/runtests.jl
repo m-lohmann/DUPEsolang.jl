@@ -2,7 +2,7 @@
 
 #Start Test Script
 using DUPEsolang
-using Test
+using Base.Test
 
 if VERSION >= v"0.5"
 
