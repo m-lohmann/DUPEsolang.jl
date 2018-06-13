@@ -28,7 +28,7 @@ function ahead(code::Array)
     a=0
     i=indexin(code,['{','}'])
     @inbounds for ip=0:length(i)-1
-        i[ip+1]==1 ? a=ip:
+        i[ip+1]==1 ? a=ip :
         i[ip+1]==2 ? (ah[a+1]=ip;a=ip) : nothing
     end
 

@@ -3,7 +3,7 @@ function operator(oc::Char,s)
     oc=='%' ? (del(s)) :
     oc=='ø' ? (pick(s)) :
     oc=='^' ? (over(s)) :
-    oc=='\\'? (swap(s)) :
+    oc=='\\' ? (swap(s)) :
     oc=='@' ? (rot(s)) :
     oc=='(' ? (tors(s)) :
     oc==')' ? (tods(s)) :
@@ -22,8 +22,8 @@ function operator(oc::Char,s)
     oc=='=' ? (equals(s)) :
     oc==':' ? (varpush(s)) :
     oc==';' ? (varassign(s)) :
-    oc=='\''? (charpush(s)) :
-    oc=='\"'? (getstring(s)) :
+    oc=='\'' ? (charpush(s)) :
+    oc=='\"' ? (getstring(s)) :
     oc=='{' ? (opencurl(s)) :
     oc=='}' ? (closecurl(s)) :
     oc=='[' ? (openbracket(s)) :
