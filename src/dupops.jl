@@ -88,7 +88,7 @@ end
 
 and(s) = push!(s.ds,pop!(s.ds)&pop!(s.ds))
 
-xor(s) = push!(s.ds,pop!(s.ds)$pop!(s.ds))
+xor(s) = push!(xor(s.ds,pop!(s.ds),pop!(s.ds)))
 
 not(s) = push!(s.ds,~pop!(s.ds))
 

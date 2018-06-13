@@ -198,7 +198,7 @@ function evalcode(s)
     elseif isdigit(c)                       # parse number string
         num=0
         while isdigit(s.code[s.ip+1])
-            num=10*num+parse(Int64,s.code[s.ip+1],base=10)
+            num=10*num+parse(Int64,s.code[s.ip+1],10)
             if s.ip+1 == length(s.code)
                 s.ip+=1;break
             else s.ip+=1
@@ -208,8 +208,8 @@ function evalcode(s)
         mode=="eachstep"||mode=="fullstate" ? println("ev, ip++: $(s.ip)") : nothing
         mode=="eachstep"||mode=="fullstate" ? println("ds: $(s.ds)") : nothing
         return
-    elseif occursin(r"\s",string(c))     # parse whitespace
-        while occursin(r"\s",string(s.code[s.ip+1])) && s.ip<length(s.code)
+    elseif ismatch(r"\s",string(c))     # parse whitespace
+        while ismatch(r"\s",string(s.code[s.ip+1])) && s.ip<length(s.code)
             s.ip+=1
             if s.ip==length(s.code)
                 break
