@@ -85,9 +85,9 @@ if VERSION >= v"0.5"
 
     @testset "dup char output and string handling/output tests" begin
         global tests7=Dict(
-            "'0"                          =>  ['0']               ,   # '0' or 48
-            "'a'b'c"                      =>  ['a','b','c']       ,
-            "'a'b,'c'd,'e'f"              =>  ['a','c','e','f']   ,
+            "'0"                          =>  [48]                ,   # '0' or 48
+            "'a'b'c"                      =>  [97,98,99]          ,
+            "'a'b,'c'd,'e'f"              =>  [97,99,101,102]     ,
             "0\$\"abc\""                  =>  [0,3]               ,
             "0\$\"str\"^\$;\\1+\$;\\1+;"  =>  [0,3,115,116,114]       # store string "str" in vars, fetch values.
         )
