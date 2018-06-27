@@ -14,9 +14,9 @@ function operator(oc::Char,s)
     oc=='_' ? (negate(s)) :
     oc=='«' ? (asl(s)) :
     oc=='»' ? (lsr(s)) :
-    oc=='&' ? (and(s)) :
-    oc=='|' ? (xor(s)) :
-    oc=='~' ? (not(s)) :
+    oc=='&' ? (and_op(s)) :
+    oc=='|' ? (xor_op(s)) :
+    oc=='~' ? (not_op(s)) :
     oc=='>' ? (greaterthan(s)) :
     oc=='<' ? (lessthan(s)) :
     oc=='=' ? (equals(s)) :
@@ -86,11 +86,11 @@ function lsr(s)
     push!(s.ds,pop!(s.ds)>>>rs)
 end
 
-and(s) = push!(s.ds,pop!(s.ds)&pop!(s.ds))
+and_op(s) = push!(s.ds,pop!(s.ds)&pop!(s.ds))
 
-xor(s) = push!(s.ds,pop!(s.ds)$pop!(s.ds))
+xor_op(s) = push!(s.ds,pop!(s.ds)$pop!(s.ds))
 
-not(s) = push!(s.ds,~pop!(s.ds))
+not_op(s) = push!(s.ds,~pop!(s.ds))
 
 function greaterthan(s)
     pop!(s.ds) < pop!(s.ds) ? push!(s.ds,-1) : push!(s.ds,0)

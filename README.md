@@ -10,27 +10,27 @@ Content:
 
 * [Introduction](https://github.com/m-lohmann/DUPEsolang.jl#introduction)
 * [Instructions](https://github.com/m-lohmann/DUPEsolang.jl#instructions)
- * [Numbers](https://github.com/m-lohmann/DUPEsolang.jl#numbers)
- * [Stack manipulation](https://github.com/m-lohmann/DUPEsolang.jl#stack-manipulation)
- * [Arithmetic operators](https://github.com/m-lohmann/DUPEsolang.jl#arithmetic-operators)
- * [Logic operators and bit manipulation](https://github.com/m-lohmann/DUPEsolang.jl#logic-operators-and-bit-manipulation)
- * [Comparison operators](https://github.com/m-lohmann/DUPEsolang.jl#comparison-operators)
- * [Variable and numeric address assignment](https://github.com/m-lohmann/DUPEsolang.jl#variable-and-numeric-address-assignment-fetch-values)
-    * [Assign values](https://github.com/m-lohmann/DUPEsolang.jl#assign-values-to-variables-and-numeric-addresses)
-    * [Fetch values](https://github.com/m-lohmann/DUPEsolang.jl#fetch-value-from-variables-and-addresses)
- * [I/O](https://github.com/m-lohmann/DUPEsolang.jl#io)
-    * [Single character handling/output](https://github.com/m-lohmann/DUPEsolang.jl#single-character-handlingoutput)
-    * [Character input](https://github.com/m-lohmann/DUPEsolang.jl#character-input)
-    * [String handling/output](https://github.com/m-lohmann/DUPEsolang.jl#string-handlingoutput)
- * [Comments](https://github.com/m-lohmann/DUPEsolang.jl#comments)
- * [Conditionals/Program flow](https://github.com/m-lohmann/DUPEsolang.jl#conditionalsprogram-flow-control)
-    * [If Then Else](https://github.com/m-lohmann/DUPEsolang.jl#if-then-else)
-    * [While Loop](https://github.com/m-lohmann/DUPEsolang.jl#while-loop)
- * [Lambdas, named functions, operators](https://github.com/m-lohmann/DUPEsolang.jl#lambdas-named-functions-named-operators)
-    * [Lambdas](https://github.com/m-lohmann/DUPEsolang.jl#lambdas)
-    * [Named functions](https://github.com/m-lohmann/DUPEsolang.jl#named-functions)
-    * [Named operators](https://github.com/m-lohmann/DUPEsolang.jl#named-operators)
- * [Return stack/continuation stack manipulation](https://github.com/m-lohmann/DUPEsolang.jl#return-stackcontinuation-stack-manipulation)
+* [Numbers](https://github.com/m-lohmann/DUPEsolang.jl#numbers)
+* [Stack manipulation](https://github.com/m-lohmann/DUPEsolang.jl#stack-manipulation)
+* [Arithmetic operators](https://github.com/m-lohmann/DUPEsolang.jl#arithmetic-operators)
+* [Logic operators and bit manipulation](https://github.com/m-lohmann/DUPEsolang.jl#logic-operators-and-bit-manipulation)
+* [Comparison operators](https://github.com/m-lohmann/DUPEsolang.jl#comparison-operators)
+* [Variable and numeric address assignment](https://github.com/m-lohmann/DUPEsolang.jl#variable-and-numeric-address-assignment-fetch-values)
+  * [Assign values](https://github.com/m-lohmann/DUPEsolang.jl#assign-values-to-variables-and-numeric-addresses)
+  * [Fetch values](https://github.com/m-lohmann/DUPEsolang.jl#fetch-value-from-variables-and-addresses)
+* [I/O](https://github.com/m-lohmann/DUPEsolang.jl#io)
+  * [Single character handling/output](https://github.com/m-lohmann/DUPEsolang.jl#single-character-handlingoutput)
+  * [Character input](https://github.com/m-lohmann/DUPEsolang.jl#character-input)
+  * [String handling/output](https://github.com/m-lohmann/DUPEsolang.jl#string-handlingoutput)
+* [Comments](https://github.com/m-lohmann/DUPEsolang.jl#comments)
+* [Conditionals/Program flow](https://github.com/m-lohmann/DUPEsolang.jl#conditionalsprogram-flow-control)
+  * [If Then Else](https://github.com/m-lohmann/DUPEsolang.jl#if-then-else)
+  * [While Loop](https://github.com/m-lohmann/DUPEsolang.jl#while-loop)
+* [Lambdas, named functions, operators](https://github.com/m-lohmann/DUPEsolang.jl#lambdas-named-functions-named-operators)
+  * [Lambdas](https://github.com/m-lohmann/DUPEsolang.jl#lambdas)
+  * [Named functions](https://github.com/m-lohmann/DUPEsolang.jl#named-functions)
+  * [Named operators](https://github.com/m-lohmann/DUPEsolang.jl#named-operators)
+* [Return stack/continuation stack manipulation](https://github.com/m-lohmann/DUPEsolang.jl#return-stackcontinuation-stack-manipulation)
 * [Using DUP](https://github.com/m-lohmann/DUPEsolang.jl#using-dup)
 * [Debugging operator](https://github.com/m-lohmann/DUPEsolang.jl#debugging-operator)
 
@@ -69,6 +69,7 @@ $   DUP     Dup top stack item.
 ```
 
 Examples:
+
 ```
             data stack
 2$          [2,2]
@@ -90,13 +91,16 @@ Examples:
 /   Mod,Div     Pushes mod and integer division results on top of the stack.
                 **Changed in DUP to mimic Forth’s /MOD operator**
 ```
+
 Mod only and division only can be realized as follows:
+
 ```
 /\%     Integer division only
 /%      Mod only
 ```
 
 Examples:
+
 ```
             data stack
 5 3+        [8]
@@ -118,12 +122,15 @@ The following logic and bit manipulation operators are available in **DUP**:
 »   LSR     Results in: 1st >>> 2nd item. **New instruction in DUP (JS version)**
 «   ASL     Results in: 1st << 2nd item.  **New instruction in DUP (JS version)**
 ```
+
 Inclusive OR can be realized by:
+
 ```
 ^~&|        OR
 ```
 
 Examples:
+
 ```
             data stack
 5 3&        [1]
@@ -146,6 +153,7 @@ Examples:
 ```
 
 Examples
+
 ```
             data stack
 5 3<        [0]     (FALSE)
@@ -168,6 +176,7 @@ The colon operator `:` is used for value assignment to a variable or address. Th
 `<value> <address>:`
 
 Examples:
+
 ```
             variables or addresses
 3 a:        a=3
@@ -186,12 +195,14 @@ The `;` operator is used to fetch values from addresses or variables. The proper
 `<address>;`:
 
 Examples:
+
 ```
                             Resulting var/ind   Resulting data stack
 3a: a;                      a=3                 [3]
 3a: 2z: z;                  a=3, z=2            [2]
 3 70: 7 z: 1 0: z; 0; 70;   0=1, 70=3, z=7      [7,1,3]
 ```
+
 ### I/O
 
 #### Single character handling/output
@@ -211,6 +222,7 @@ Input of single characters is done with the backtick character `` ` ``. The char
                 data stack
 `               ['H']/[72]     (if 'H' was entered in STDIN)
 ```
+
 Originally, in **FALSE**, the character `^` is used for character input.
 
 
@@ -220,14 +232,17 @@ In **DUP**, strings are not sent to STDOUT directly. Strings are stored in the v
 In my Julia implementation, assigning strings to an alphabetic start variable, follows the same principle, counting up in alphabetical order. This behavior is different from the [Javascript implementation](http://www.quirkster.com/iano/js/dup.html) at quirkster.com. *For compatibility reasons, you should not assign strings to alphabetic variables!*
 
 Examples:
+
 ```
                         data stack          variables
 0"str"                  [3]                 0=115, 1=116, 2=114
 0"str"^$;1+$;\1+;       [3,'s','t','r']     0=115, 1=116, 2=114
 ```
+
 To print a string to SDTOUT, you need to append a `$` after the start address and you have to append `\[^^>][$;,1+]#%%` after the ending double quotes.
 
 Example:
+
 ```
                             data stack      variables               STDOUT
 7$"str"\[^^>][$;,1+]#%%     []              7=115, 8=116, 9=114     str
@@ -268,7 +283,6 @@ The **DUP** equivalent to the old **FALSE** `condition[do if true]?` construct l
 2 1<['t][]?     []                  equivalent to FALSE:     2 1>~['t]?
 ```
 
-
 #### While Loop
 
 While loops in **DUP** use the `#` operator, using the same syntax as in **FALSE**: `[condition][block]#`.
@@ -282,7 +296,7 @@ Step-by-step Example:
  [                 [4,1]
     [              [4,1,4]
              #     [4,]        [13,1,4]
-  $                [4,4]        
+  $                [4,4]
    ]               [4]         [13,1,4,1]
      $             [4,4]
       .            [4]                            4
@@ -316,6 +330,7 @@ Lambdas are defined by putting them between square brackets. The definition puts
 ```
 
 Lambdas are executed by appending a `!` to them:
+
 ```
         data stack
 7[2*]!  [17]
@@ -349,6 +364,7 @@ location    data stack      return stack
       ↓
 7[2*]!      [14]            []
 ```
+
 As you can see, the `!` command pushes the current ip location on the return stack and the ip is set to the location of the lambda start (which is stored on the data stack). This way, the IP knows where to return after executing a lambda. In this simple example it is not ambiguous, but in more complicated setups like nested functions etc. this is essential.
 This transparency of the return stack also means that programs can manipulate return addresses. This is explained in the next section.
 
@@ -362,11 +378,15 @@ Define a function `s` that squares numbers:
 ```
 [$*]s:
 ```
+
 Define a function `f` that halves numbers:
+
 ```
 [2/\%]f:
 ```
+
 Call function `s`:
+
 ```
 s;!
 ```
@@ -379,6 +399,7 @@ Functions can also call other functions. In the next example, function `s` takes
 ```
 
 To understand the program more easily, put the functions in a more readable order. the `↓` shows the location of the IP after finishing each of the blocks:
+
 ```
                             data st.  ret. st.  vars      explanation
 7$+ [2/\%]f: [f;!$*]s: s;!
@@ -396,8 +417,8 @@ Functions can not only call other functions, but also themselves, of course. Her
 ```
 [$1>[$1-f;!*][%1]?]f: 6f;!
 ```
-It’s up to the reader to figure out how this program works ;)
 
+It’s up to the reader to figure out how this program works ;)
 
 #### Named operators
 
@@ -422,6 +443,7 @@ In **DUP**, the return stack is used for tracing brackets and locations of funct
 The `(` operator pops the topmost data stack value and pushes it on the return stack. The operator `(` pops the topmost return stack value and pushes it on the data stack.
 
 Example using the return stack as second stack for temporary storage:
+
 ```
             data Stack          return stack
 2 3(4+)
@@ -433,6 +455,7 @@ Example using the return stack as second stack for temporary storage:
 ```
 
 Further examples showing how some operators can be realized with the help of the return stack:
+
 ```
 ($)\                    alternative realization of the OVER operator ^
 (\)\                    alternative realization of the ROT operator @
@@ -474,6 +497,7 @@ Available parameters are:
 `"fullstate"`: Outputs the program state (IP location, data stack, return stack, variables) for each program eval operation.
 
 `"ds"`: Outputs the data stack only.
+
 `"vars"`: Outputs the variables only.
 
 One further optional parameter is the limit of steps the program should run:

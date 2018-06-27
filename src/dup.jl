@@ -198,7 +198,7 @@ function evalcode(s)
     elseif isdigit(c)                       # parse number string
         num=0
         while isdigit(s.code[s.ip+1])
-            num=10*num+parse(Int64,s.code[s.ip+1],base=10)
+            num=10*num+parse(Int64,s.code[s.ip+1],10)
             if s.ip+1 == length(s.code)
                 s.ip+=1;break
             else s.ip+=1
