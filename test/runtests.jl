@@ -137,10 +137,10 @@ if VERSION >= v"0.5"
 
     @testset "dup if/then test" begin
         global tests12=Dict(
-            "0['t]['f]?"                  =>  ['f']               ,   #  0=true ? ['t] : ['f] => false
-            "1_['t]['f]?"                 =>  ['t']               ,   # -1=true ? ['t] : ['f] => true
-            "5_['t]['f]?"                 =>  ['t']               ,   # -5=true ?
-            "5['t]['f]?"                  =>  ['t']                   #  5=true ?
+            "0['t]['f]?"                  =>  [102]               ,   #  0=true ? ['t] : ['f] => false
+            "1_['t]['f]?"                 =>  [116]               ,   # -1=true ? ['t] : ['f] => true
+            "5_['t]['f]?"                 =>  [116]               ,   # -5=true ?
+            "5['t]['f]?"                  =>  [116]                   #  5=true ?
         )
         for t in keys(tests12)
             @test duptest(t).ds==tests12[t]
