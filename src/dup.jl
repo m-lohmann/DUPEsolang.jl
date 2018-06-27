@@ -208,8 +208,8 @@ function evalcode(s)
         mode=="eachstep"||mode=="fullstate" ? println("ev, ip++: $(s.ip)") : nothing
         mode=="eachstep"||mode=="fullstate" ? println("ds: $(s.ds)") : nothing
         return
-    elseif occursin(r"\s",string(c))     # parse whitespace
-        while occursin(r"\s",string(s.code[s.ip+1])) && s.ip<length(s.code)
+    elseif ismatch(r"\s",string(c))     # parse whitespace
+        while ismatch(r"\s",string(s.code[s.ip+1])) && s.ip<length(s.code)
             s.ip+=1
             if s.ip==length(s.code)
                 break
