@@ -88,7 +88,7 @@ end
 
 and_op(s) = push!(s.ds,pop!(s.ds)&pop!(s.ds))
 
-xor_op(s) = push!(s.ds,pop!(s.ds)$pop!(s.ds))
+xor_op(s) = push!(s.ds,pop!(s.ds) ⊻ pop!(s.ds))
 
 not_op(s) = push!(s.ds,~pop!(s.ds))
 
