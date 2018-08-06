@@ -204,11 +204,11 @@ function opassign(s,newops)
         s.no=[s.code[s.ip+1] oploc]
         newops=[s.code[s.ip+1]]
     else
-        if isempty(findin(s.no,s.code[s.ip+1])) #if op does not exist yet in no
+        if isempty(findall((in)(s.code[s.ip+1],s.no))) #if op does not exist yet in no
             s.no=vcat(s.no,[s.code[s.ip+1] oploc])
             push!(newops,s.code[s.ip+1])
         else                                    #if op exists in no...
-            s.no[findin(s.no,s.code[s.ip+1]),2]=oploc   #...overwrite op location
+            s.no[findall((in)(s.code[s.ip+1]),s.no),2]=oploc   #...overwrite op location
         end
     end
 end
