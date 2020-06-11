@@ -3,7 +3,7 @@ os:
     - osx
     - linux
 julia:
-    - release
+    - 1
     - nightly
 notifications:
     email: false
