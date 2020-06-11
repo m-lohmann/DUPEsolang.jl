@@ -165,10 +165,10 @@ end
 #print state info
 function stateprint(counter)
     if s.ip<=length(s.code)-1
-        print_with_color(:blue,"\n---- state ----")
-        print_with_color(:blue,"\n -- $counter --\n")
+        printstyled("\n---- state ----", color = :blue)
+        printstyled("\n -- $counter --\n", color = :blue)
         for i=1:length(s.code)
-            i==s.ip+1 ? print_with_color(:blue,string(s.code[i])) : print(s.code[i])
+            i==s.ip+1 ? printstyled(string(s.code[i]), color = :blue) : print(s.code[i])
         end
         println()
         println("ip: $(s.ip)")

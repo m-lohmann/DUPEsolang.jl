@@ -216,9 +216,9 @@ end
 # print debug info, non-standard operator
 function debugprint()
     if s.ip<=length(s.code)-1
-        print_with_color(:blue,"\n--- debug info ---\n")
+        printstyled("\n--- debug info ---\n", color = :blue)
         for i=1:length(s.code)
-            i==s.ip+1 ? print_with_color(:blue,string(s.code[i])) : print(s.code[i])
+            i==s.ip+1 ? printstyled(string(s.code[i]), color = :blue) : print(s.code[i])
         end
         println()
         println("ip: $(s.ip)")
