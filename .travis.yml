@@ -8,5 +8,6 @@ julia:
 notifications:
     email: false
 script:
-    - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-    - julia --project -e 'using Pkg; Pkg.activate("docs"); Pkg.instantiate(); Pkg.develop(PackageSpec(path = pwd()))'
+    using Pkg
+    Pkg.build(; verbose = true) #Pkg.build() # Pkg.build(; verbose = true) for Julia 1.1 and up
+    Pkg.test(coverage=true)
