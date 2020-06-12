@@ -191,7 +191,7 @@ function evalcode(s)
     if c in newops#s.no[:,1]
         mode=="eachstep"||mode=="fullstate" ? println("ev, new op: $c") : nothing
         push!(s.rs,s.ip)
-        s.ip=s.no[findin(s.no,c),2][1]
+        s.ip=s.no[2,findfirst(isequal(c),s.no)]
     elseif c in standardops                  # check Dict with instructions
         #mode=="eachstep"||mode=="fullstate" ? println("ev key: $(c) => $(o[c])") : nothing
         operator(rcode(s),s)
